@@ -19,7 +19,7 @@ RUN cargo install canvas-node \
   --force --locked
     
 ENTRYPOINT ["canvas"]
-CMD ["--dev", "--tmp", "--no-prometheus", "--rpc-external", "--ws-external"]
+CMD ["--dev", "--tmp", "--no-prometheus", "--rpc-external", "--ws-external", "--no-telemetry"]
 
 LABEL \
   org.label-schema.name="Canvas Node" \
