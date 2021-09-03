@@ -11,12 +11,15 @@ RUN rustup install nightly \
   && rustup target add wasm32-unknown-unknown --toolchain nightly \
   && rustup component add rust-src --toolchain nightly
 
-ARG CANVAS_NODE_VERSION="0.1.4"
+ARG CANVAS_NODE_VERSION="0.1.9"
+ARG CANVAS_CONTRACT_VERSION="0.13"
 
 RUN cargo install canvas-node \
   --git https://github.com/paritytech/canvas-node.git \
   --tag v${CANVAS_NODE_VERSION} \
   --force --locked
+  
+RUN cargo install cargo-contract --vers ^${CANVAS_CONTRACT_VERSION} --force --locked
     
 ENTRYPOINT ["canvas"]
 CMD ["--dev", "--tmp", "--no-prometheus", "--rpc-external", "--ws-external", "--no-telemetry"]
